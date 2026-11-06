@@ -1,0 +1,41 @@
+// GitHub repository: https://github.com/DanielMbah/Palindrome_Number.git
+
+
+import java.util.Scanner;
+
+public class Palindromenumber {
+
+    // Recursively reverses the digits of the number.
+    private static long reverseNumber(int number, long reversed) {
+        if (number == 0) {
+            return reversed;
+        }
+
+        int lastDigit = number % 10;
+        return reverseNumber(number / 10, reversed * 10 + lastDigit);
+    }
+
+    // A negative integer is not considered a palindrome.
+    public static boolean isPalindrome(int number) {
+        if (number < 0) {
+            return false;
+        }
+
+        return number == reverseNumber(number, 0);
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int number = input.nextInt();
+
+        if (isPalindrome(number)) {
+            System.out.println(number + " is a palindrome number.");
+        } else {
+            System.out.println(number + " is not a palindrome number.");
+        }
+
+        input.close();
+    }
+}
